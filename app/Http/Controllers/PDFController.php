@@ -30,15 +30,15 @@ class PDFController extends Controller
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
         $dompdf = new Dompdf($options);
+        return view('welcome', ['data' => $data]);
+        // $html = view('welcome', ['data' => $data])->render();
 
-        $html = view('welcome', ['data' => $data])->render();
+        // $dompdf->loadHtml($html);
 
-        $dompdf->loadHtml($html);
+        // $dompdf->setPaper('A4', 'portrait');
+        // $dompdf->render();
 
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
-
-        return $dompdf->stream('document.pdf');
+        // return $dompdf->stream('document.pdf');
     }
 
     public function pdf(Request $request)
